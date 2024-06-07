@@ -42,30 +42,15 @@
     function sendEmail() {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("X-Requested-With", "XMLHttpRequest");
-        myHeaders.append("Authorization", "Bearer mlsn.b6f53aa72b0a15bedcc1aa12fdbab42b06f7425818569cada31b4e1e7d4e17d2");
-        const raw = JSON.stringify({
-                "from": {
-                    "email": "MS_0gqtl4@trial-pxkjn41pq2q4z781.mlsender.net"
-                },
-                "to": [
-                    {
-                        "email": "lucasmottacp@gmail.com"
-                    }
-                ],
-                "subject": "Ela aceitou!",
-                "text": "Greetings from the team, you got this message through MailerSend.",
-                "html": "Greetings from the team, you got this message through MailerSend."
-            })
+        
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
-            body: raw,
-            // mode: 'no-cors',
+            mode: 'no-cors',
             redirect: "follow"
         };
 
-        fetch("https://api.mailersend.com/v1/email", requestOptions)
+        fetch("https://c75414f88c0f4b088bcc11d7b2d8fb48.flow.pstmn.io/SEND", requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.error(error));
