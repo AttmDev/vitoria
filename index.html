@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Me Namora?!</title>
+    <link rel="shortcut icon" href="assets/css/images/favicon.png">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+</head>
+<body class="loading">
+<!-- Música de Fundo -->
+<audio src="assets/audio/MeNamora.mp3" controls autoplay loop></audio>
+<div id="wrapper">
+    <div id="bg"></div>
+    <div id="overlay"></div>
+    <div id="main">
+        <!-- Header -->
+        <header id="header">
+            <h1>Ei, Vitória</h1>
+            <h1>Quer namorar comigo?</h1>
+            <nav>
+                <ul>
+                    <li><a  class="icon fa-heart faa-pulse animated" onclick="sendEmail()"><span class="label">heart</span></a></li>
+                    <li>
+                        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQotNK0igM0Nbzp8IDg01zIu2-Gvif2hHoKTx6YQBFxawdUsCHy&usqp=CAc"
+                           class="icon fa-times-circle"><span class="label">times</span></a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Footer -->
+        <footer id="footer">
+            <span class="icon fa-volume-up"><span class="label">volume-up</span></span>
+        </footer>
+    </div>
+</div>
+<script>
+    function sendEmail() {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("X-Requested-With", "XMLHttpRequest");
+        myHeaders.append("Authorization", "Bearer mlsn.b6f53aa72b0a15bedcc1aa12fdbab42b06f7425818569cada31b4e1e7d4e17d2");
+        const raw = JSON.stringify({
+                "from": {
+                    "email": "MS_0gqtl4@trial-pxkjn41pq2q4z781.mlsender.net"
+                },
+                "to": [
+                    {
+                        "email": "lucasmottacp@gmail.com"
+                    }
+                ],
+                "subject": "Ela aceitou!",
+                "text": "Greetings from the team, you got this message through MailerSend.",
+                "html": "Greetings from the team, you got this message through MailerSend."
+            })
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            // mode: 'no-cors',
+            redirect: "follow"
+        };
+
+        fetch("https://api.mailersend.com/v1/email", requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.error(error));
+    }
+
+    window.onload = function () {
+        document.body.className = '';
+    }
+    window.ontouchmove = function () {
+        return false;
+    }
+    window.onorientationchange = function () {
+        document.body.scrollTop = 0;
+    }
+</script>
+</body>
+</html>
